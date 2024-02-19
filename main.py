@@ -1,4 +1,4 @@
-version = "1.34" # YOUR VERSION
+version = "1.32" # YOUR VERSION
 credits = "kellyhated,coxy57" # DO NOT REMOVE CREDITS, ONLY ADD YOUR USERNAME IF YOU TOOK THAT FOR YOUR PROJECT
 tiktok_user = "@kellysqw" # YOUR TIKTOK / OTHER PLATFORM
 discord_server = "discord.gg/SDZac8mSXd" # YOUR DISCORD SERVER
