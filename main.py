@@ -1,8 +1,10 @@
-version = "1.3" # YOUR VERSION
+version = "1.34" # YOUR VERSION
 credits = "kellyhated,coxy57" # DO NOT REMOVE CREDITS, ONLY ADD YOUR USERNAME IF YOU TOOK THAT FOR YOUR PROJECT
 tiktok_user = "@kellysqw" # YOUR TIKTOK / OTHER PLATFORM
 discord_server = "discord.gg/SDZac8mSXd" # YOUR DISCORD SERVER
 discord_username = "kellyhate" # YOUR DISCORD USERNAME
+thing = "────────────────────────────────" # thing like ────────────────────────────────
+webhook_thing = "────────────────────────" # thing like ────────────────────────
 
 # modules
 import http.client, json, requests, time
@@ -14,14 +16,14 @@ ping_low_prize = "<@&>" # 500 AMOUNT RAINS, PUT ROLE ID <@&>
 ping_high_prize = "<@&>" # 501+ AMOUNT RAINS, PUT ROLE ID IN <@&>
 
 print(Fore.RED, ">> [Started!]", Style.RESET_ALL, flush=True)
-print(Fore.LIGHTWHITE_EX, "────────────────────────────────")
+print(Fore.LIGHTWHITE_EX, f"{thing}")
 print(Fore.RED, ">> Main", Style.RESET_ALL, flush=True)
 print(Fore.RED, f">> Version: {version}", Style.RESET_ALL, flush=True)
-print(Fore.LIGHTWHITE_EX, "────────────────────────────────")
+print(Fore.LIGHTWHITE_EX, f"{thing}")
 print(Fore.RED, ">> Pings", Style.RESET_ALL, flush=True)
 print(Fore.RED, f">> High rains: {ping_high_prize}", Style.RESET_ALL, flush=True)
 print(Fore.RED, f">> Low rains: {ping_low_prize}", Style.RESET_ALL, flush=True)
-print(Fore.LIGHTWHITE_EX, "────────────────────────────────")
+print(Fore.LIGHTWHITE_EX, f"{thing}")
 print(Fore.RED, ">> Info", Style.RESET_ALL, flush=True)
 print(Fore.RED, f">> Powered by: {credits}", Style.RESET_ALL, flush=True)
 print(Fore.RED, f">> Follow us on TikTok {tiktok_user}", Style.RESET_ALL, flush=True)
@@ -70,12 +72,12 @@ while True:
 
         data = {
             "content": f"{ping}",
-            "username": "Rain Notifier"
+            "username": "BloxFlip Rain Notifier"
         }
         data["embeds"] = [
             {
-                "description": f"- New rain started! ✨\n- **Host**: {rain_['host']}👥\n- **Rain Amount**: {rain_['prize']}💸\n- **Expiration**: <t:{duration}:R>⌚\n- **Hop on [BloxFlip](https://bloxflip.com) to participate in this chat rain!**🍂\n------------------------\n- **Last time rain detected: {current_time_kiev}⏲ (UTC+3)**\n- **Version: {version} | made by {credits}**",
-                "title": "New Rain Detected! ☔",
+                "description": f"- 🌧 New rain started!\n- 👥 **Host**: {rain_['host']}\n- 💸 **Rain Amount**: {rain_['prize']}\n- ⌚ **Expiration**: <t:{duration}:R>\n- 🍂 **Hop on [BloxFlip](https://bloxflip.com) to participate in this chat rain!**\n{webhook_thing}\n- **Last time rain detected: {current_time_kiev} (UTC+3)**\n- **Version: {version} | made by {credits}**",
+                "title": "Good news!",
                 "thumbnail": {
                     "url": requests.get(
                         f"https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds={usdid}&size=50x50&format=Png&isCircular=false").json()['data'][0][
