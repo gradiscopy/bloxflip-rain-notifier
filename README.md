@@ -1,4 +1,5 @@
-# DO NOT TAKE THIS PROJECT WITHOUT CREDITS (coxy57,kellyhated)
+# WARNING
+That code was made by coxy57 i took it and added things, fixed the bug with bot not sending webhook, added better designs, more messages in webhook, pings for big rains and low rains, visuals in code, and other things
 
 # tutorial
 1. Download files
@@ -35,12 +36,7 @@ https://bot-hosting.net/?aff=1170162576735354932
 # how bot works?
 It sending webhook to your server when the rain is started
 
-
-
-
-
-# WARNING
-That code was made by coxy57 i took it and added things, fixed the bug with bot not sending webhook, added better designs, more messages in webhook, pings for big rains and low rains, visuals in code, and other things
+# UPDATES EVERY 2 STARS, ENJOY!
 
 
 
