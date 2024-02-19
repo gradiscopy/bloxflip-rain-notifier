@@ -33,7 +33,7 @@ current_time = datetime.now(kiev_timezone)
 adjusted_time = current_time - timedelta(hours=1)
 current_time_kiev = adjusted_time.strftime("%H:%M")
 
-webhook = "webhook_link" # PUT YOUR WEBHOOK LINK
+webhook = "" # PUT YOUR WEBHOOK LINK
 time_sleep_every_loop = 5
 # DONT REMOVE OR IT WONT WORK
 
