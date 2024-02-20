@@ -1,19 +1,30 @@
-version = "1.32" # YOUR VERSION
-credits = "kellyhated,coxy57" # DO NOT REMOVE CREDITS, ONLY ADD YOUR USERNAME IF YOU TOOK THAT FOR YOUR PROJECT
-tiktok_user = "@kellysqw" # YOUR TIKTOK / OTHER PLATFORM
-discord_server = "discord.gg/SDZac8mSXd" # YOUR DISCORD SERVER
-discord_username = "kellyhate" # YOUR DISCORD USERNAME
-thing = "────────────────────────────────" # thing like ────────────────────────────────
-webhook_thing = "────────────────────────" # thing like ────────────────────────
+thing = "────────────────────────────────" # thing for faster code
+webhook_thing = "────────────────────────" # webhook thing for faster code
 
 # modules
 import http.client, json, requests, time
 from datetime import datetime, timezone, timedelta
 from colorama import Fore, Style
 from termcolor import colored
+import cloudscraper
 
-ping_low_prize = "<@&>" # 500 AMOUNT RAINS, PUT ROLE ID <@&>
-ping_high_prize = "<@&>" # 501+ AMOUNT RAINS, PUT ROLE ID IN <@&>
+s = cloudscraper.create_scraper(browser={'custom': 'ScraperBot/1.0'})
+
+scraper = cloudscraper.create_scraper(browser={'custom': 'ScraperBot/1.0'})
+
+with open('config.json', 'r') as config_file:
+    config = json.load(config_file)
+
+# config settings
+version = config["version"]
+credits = config["credits"]
+tiktok_user = config["tiktok_user"]
+discord_server = config["discord_server"]
+discord_username = config["discord_username"]
+ping_low_prize = config["ping_low_prize"]
+ping_high_prize = config["ping_high_prize"]
+webhook = config["webhook"]
+time_sleep_every_loop = config["time_sleep_every_loop"]
 
 print(Fore.RED, ">> [Started!]", Style.RESET_ALL, flush=True)
 print(Fore.LIGHTWHITE_EX, f"{thing}")
@@ -34,10 +45,6 @@ kiev_timezone = timezone(timedelta(hours=3))  # UTC+3
 current_time = datetime.now(kiev_timezone)
 adjusted_time = current_time - timedelta(hours=1)
 current_time_kiev = adjusted_time.strftime("%H:%M")
-
-webhook = "" # PUT YOUR WEBHOOK LINK
-time_sleep_every_loop = 5
-# DONT REMOVE OR IT WONT WORK
 
 # rain finder
 def active():
@@ -61,7 +68,7 @@ while True:
         duration = round(dur)
         conv = (duration / (1000 * 60)) % 60
         time_to_slp = (conv * 60 + 10)
-        usdid = requests.post(f"https://users.roblox.com/v1/usernames/users",
+        usdid = scraper.post(f"https://users.roblox.com/v1/usernames/users",
                               json={"usernames": [rain_['host']]}).json()['data'][0]['id']
         # rain pings
         prize = rain_['prize']
@@ -79,13 +86,13 @@ while True:
                 "description": f"- 🌧 New rain started!\n- 👥 **Host**: {rain_['host']}\n- 💸 **Rain Amount**: {rain_['prize']}\n- ⌚ **Expiration**: <t:{duration}:R>\n- 🍂 **Hop on [BloxFlip](https://bloxflip.com) to participate in this chat rain!**\n{webhook_thing}\n- **Last time rain detected: {current_time_kiev} (UTC+3)**\n- **Version: {version} | made by {credits}**",
                 "title": "Good news!",
                 "thumbnail": {
-                    "url": requests.get(
+                    "url": scraper.get(
                         f"https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds={usdid}&size=50x50&format=Png&isCircular=false").json()['data'][0][
                         'imageUrl']
                 }
             }
         ]
-        r = requests.post(webhook, json=data)
+        r = scraper.post(webhook, json=data)
         time.sleep(time_to_slp)
     time.sleep(time_sleep_every_loop)
 
