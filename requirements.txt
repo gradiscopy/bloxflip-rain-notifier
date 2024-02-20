@@ -3,3 +3,4 @@ discord_webhook
 datetime
 colorama
 termcolor
+cloudscraper
