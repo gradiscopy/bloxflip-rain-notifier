@@ -4,13 +4,13 @@ That code was made by coxy57 i took it and added things, fixed the bug with bot 
 # tutorial
 1. Download files
 2. Download python (3.6 or late)
-3. Open code and setup it put webhooks,roles etc.
+3. Open config.json and setup it put webhooks,roles etc.
 4. Open moonly config and put webhook for restarter 
 5. Open cmd and type pip install -r requirements.txt
 6. Open keep-alive.py now your bot is working!
 
-# how to set up the code?
-1. Open main.py with python (idle)
+# how to set up the config.json?
+1. Open config.json
 2. Find "webhook" = ""
 3. Put your webhook in ""
 4. Find roles, high and low then put in <@&> role id, like that: **<@&ROLE_ID>**
