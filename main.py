@@ -71,27 +71,42 @@ while True:
         usdid = scraper.post(f"https://users.roblox.com/v1/usernames/users",
                               json={"usernames": [rain_['host']]}).json()['data'][0]['id']
         # rain pings
-        prize = rain_['prize']
+        prize = int(rain_['prize'])
         if prize >= 501:
             ping = ping_high_prize
+            data = {
+                "content": f"{ping}",
+                "username": "Big Rain Notifier"
+            }
+            data["embeds"] = [
+                {
+                    "description": f"- 🌧 New big rain started!\n- 👥 **Host**: {rain_['host']}\n- 💸 **Rain Amount**: {rain_['prize']}\n- ⌚ **Expiration**: <t:{duration}:R>\n- 🍂 **Hop on [BloxFlip](https://bloxflip.com) to participate in this chat rain!**\n{webhook_thing}\n- **Last time rain detected: {current_time_kiev} (UTC+3)**\n- **Version: {version} | made by {credits}**",
+                    "title": "Good News!",
+                    "thumbnail": {
+                        "url": scraper.get(
+                            f"https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds={usdid}&size=50x50&format=Png&isCircular=false").json()['data'][0][
+                            'imageUrl']
+                    }
+                }
+            ]
         else:
             ping = ping_low_prize
-
-        data = {
-            "content": f"{ping}",
-            "username": "BloxFlip Rain Notifier"
-        }
-        data["embeds"] = [
-            {
-                "description": f"- 🌧 New rain started!\n- 👥 **Host**: {rain_['host']}\n- 💸 **Rain Amount**: {rain_['prize']}\n- ⌚ **Expiration**: <t:{duration}:R>\n- 🍂 **Hop on [BloxFlip](https://bloxflip.com) to participate in this chat rain!**\n{webhook_thing}\n- **Last time rain detected: {current_time_kiev} (UTC+3)**\n- **Version: {version} | made by {credits}**",
-                "title": "Good news!",
-                "thumbnail": {
-                    "url": scraper.get(
-                        f"https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds={usdid}&size=50x50&format=Png&isCircular=false").json()['data'][0][
-                        'imageUrl']
-                }
+            data = {
+                "content": f"{ping}",
+                "username": "Low Rain Notifier"
             }
-        ]
+            data["embeds"] = [
+                {
+                    "description": f"- 🌧 New low rain started!\n- 👥 **Host**: {rain_['host']}\n- 💸 **Rain Amount**: {rain_['prize']}\n- ⌚ **Expiration**: <t:{duration}:R>\n- 🍂 **Hop on [BloxFlip](https://bloxflip.com) to participate in this chat rain!**\n{webhook_thing}\n- **Last time rain detected: {current_time_kiev} (UTC+3)**\n- **Version: {version} | made by {credits}**",
+                    "title": "Good News!",
+                    "thumbnail": {
+                        "url": scraper.get(
+                            f"https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds={usdid}&size=50x50&format=Png&isCircular=false").json()['data'][0][
+                            'imageUrl']
+                    }
+                }
+            ]
+
         r = scraper.post(webhook, json=data)
         time.sleep(time_to_slp)
     time.sleep(time_sleep_every_loop)
