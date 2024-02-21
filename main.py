@@ -1,6 +1,3 @@
-thing = "────────────────────────────────" # thing for faster code
-webhook_thing = "────────────────────────" # webhook thing for faster code
-
 # modules
 import http.client, json, requests, time
 from datetime import datetime, timezone, timedelta
@@ -11,6 +8,11 @@ import cloudscraper
 s = cloudscraper.create_scraper(browser={'custom': 'ScraperBot/1.0'})
 
 scraper = cloudscraper.create_scraper(browser={'custom': 'ScraperBot/1.0'})
+
+thing = "────────────────────────────────" # thing for faster code
+webhook_thing = "────────────────────────" # webhook thing for faster code
+version = "1.45" # dont change it
+credits = "kellyhated,coxy57" # dont change it
 
 with open('config.json', 'r') as config_file:
     config = json.load(config_file)
