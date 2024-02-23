@@ -15,6 +15,7 @@ credits = "kellyhated,coxy57"
 tiktok_user = "@kellysqw"
 discord_server = "discord.gg/SDZac8mSXd"
 discord_username = "kellyhate"
+version = "1.46"
 
 with open('config.json', 'r') as config_file:
     config = json.load(config_file)
