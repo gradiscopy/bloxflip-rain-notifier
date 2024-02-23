@@ -1,5 +1,5 @@
 # WARNING
-That code was made by coxy57 i took it and added things, fixed the bug with bot not sending webhook, added better designs, more messages in webhook, pings for big rains and low rains, visuals in code, and other things
+That code was made by coxy.57 i took it and added things, fixed the bug with bot not sending webhook, added better designs, more messages in webhook, pings for big rains and low rains, visuals in code, and other things
 
 # tutorial
 1. Download files
