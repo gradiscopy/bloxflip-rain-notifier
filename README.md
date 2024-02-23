@@ -5,7 +5,7 @@ That code was made by coxy57 i took it and added things, fixed the bug with bot 
 1. Download files
 2. Download python (3.6 or late)
 3. Open config.json and setup it put webhooks,roles etc.
-4. Open moonly config and put webhook for restarter 
+4. Open restarter config, u can enable/disable webhook,message
 5. Open cmd and type pip install -r requirements.txt
 6. Open keep-alive.py now your bot is working!
 
@@ -15,12 +15,12 @@ That code was made by coxy57 i took it and added things, fixed the bug with bot 
 3. Put your webhook in ""
 4. Find roles, high and low then put in <@&> role id, like that: **<@&ROLE_ID>**
 
-# how to set up the moonly config?
-1. Open moonly config
+# how to set up the restarter config?
+1. Open restarter config
 2. Find "webhook": ""
-3. Put in "" your webhook
+3. Put in "" your webhook (u can disable webhook)
 4. Best setting for minutes: 4
-5. And set up webhook message u want
+5. And set up webhook message u want (u can disable message)
 
 # how to download python? 
 1. U need to download it on **https://www.python.org/**
