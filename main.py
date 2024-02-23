@@ -11,18 +11,15 @@ scraper = cloudscraper.create_scraper(browser={'custom': 'ScraperBot/1.0'})
 
 thing = "────────────────────────────────" # thing for faster code
 webhook_thing = "────────────────────────" # webhook thing for faster code
-version = "1.45" # dont change it
-credits = "kellyhated,coxy57" # dont change it
+credits = "kellyhated,coxy57"
+tiktok_user = "@kellysqw"
+discord_server = "discord.gg/SDZac8mSXd"
+discord_username = "kellyhate"
 
 with open('config.json', 'r') as config_file:
     config = json.load(config_file)
 
 # config settings
-version = config["version"]
-credits = config["credits"]
-tiktok_user = config["tiktok_user"]
-discord_server = config["discord_server"]
-discord_username = config["discord_username"]
 ping_low_prize = config["ping_low_prize"]
 ping_high_prize = config["ping_high_prize"]
 webhook = config["webhook"]
