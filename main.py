@@ -16,6 +16,7 @@ tiktok_user = "@kellysqw"
 discord_server = "discord.gg/SDZac8mSXd"
 discord_username = "kellyhate"
 version = "1.46"
+github = "https://github.com/kellyhated/bloxflip-rain-notifier"
 
 with open('config.json', 'r') as config_file:
     config = json.load(config_file)
@@ -40,6 +41,7 @@ print(Fore.RED, f">> Powered by: {credits}", Style.RESET_ALL, flush=True)
 print(Fore.RED, f">> Follow us on TikTok {tiktok_user}", Style.RESET_ALL, flush=True)
 print(Fore.RED, f">> Join our community discord server {discord_server}", Style.RESET_ALL, flush=True)
 print(Fore.RED, f">> Dm {discord_username} on discord to report bugs/other issues", Style.RESET_ALL, flush=True)
+print(Fore.RED, f">> Our GitHub {github}", Style.RESET_ALL, flush=True)
 
 kiev_timezone = timezone(timedelta(hours=3))  # UTC+3
 current_time = datetime.now(kiev_timezone)
