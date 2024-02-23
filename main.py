@@ -11,7 +11,7 @@ scraper = cloudscraper.create_scraper(browser={'custom': 'ScraperBot/1.0'})
 
 thing = "────────────────────────────────" # thing for faster code
 webhook_thing = "────────────────────────" # webhook thing for faster code
-credits = "kellyhated,coxy57"
+credits = "kellyhated,coxy.57"
 tiktok_user = "@kellysqw"
 discord_server = "discord.gg/SDZac8mSXd"
 discord_username = "kellyhate"
