@@ -4,3 +4,4 @@ datetime
 colorama
 termcolor
 cloudscraper
+pytz
