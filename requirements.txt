@@ -3,4 +3,5 @@ discord_webhook
 datetime
 colorama
 cloudscraper
+pytz
 logging
