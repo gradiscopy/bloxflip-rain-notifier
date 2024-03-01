@@ -2,20 +2,24 @@
 import http.client, json, requests, time
 from datetime import datetime, timezone, timedelta
 from colorama import Fore, Style
-from termcolor import colored
 import cloudscraper
+import logging
+
+# logs config DONT CHANGE
+logging.basicConfig(filename='logs.txt', level=logging.INFO,
+                    format='%(asctime)s [%(levelname)s] %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
 
 s = cloudscraper.create_scraper(browser={'custom': 'ScraperBot/1.0'})
 
 scraper = cloudscraper.create_scraper(browser={'custom': 'ScraperBot/1.0'})
 
-thing = "────────────────────────────────" # thing for faster code
-webhook_thing = "────────────────────────" # webhook thing for faster code
+thing = "────────────────────────────────"  # thing for faster code
+webhook_thing = "────────────────────────"  # webhook thing for faster code
 credits = "kellyhated,coxy.57"
 tiktok_user = "@kellysqw"
 discord_server = "discord.gg/SDZac8mSXd"
 discord_username = "kellyhate"
-version = "1.46"
+version = "1.5"
 github = "https://github.com/kellyhated/bloxflip-rain-notifier"
 
 with open('config.json', 'r') as config_file:
@@ -52,66 +56,79 @@ current_time_kiev = adjusted_time.strftime("%H:%M")
 # rain finder
 def active():
     conn = http.client.HTTPSConnection("api.bloxflip.com")
-    made_by = "kellyhated,coxy57"
+    made_by = "kellyhated,coxy.57"
     headers = {
         "Referer": "https://bloxflip.com/",
         "Content-Type": "application/x-www-form-urlencoded",
-        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/117.0.5938.108 Mobile/15E148 Safari/604.1"
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
     }
     conn.request("GET", url="/chat/history", headers=headers)
     return json.loads(conn.getresponse().read().decode())['rain']
+
 # duration check
 while True:
-    rain_ = active()
-    if rain_['active']:
-        getd = rain_['duration']
-        c = rain_['created']
-        addx = getd + c
-        dur = addx / 1000
-        duration = round(dur)
-        conv = (duration / (1000 * 60)) % 60
-        time_to_slp = (conv * 60 + 10)
-        usdid = scraper.post(f"https://users.roblox.com/v1/usernames/users",
-                              json={"usernames": [rain_['host']]}).json()['data'][0]['id']
-        # rain pings
-        prize = int(rain_['prize'])
-        if prize >= 501:
-            ping = ping_high_prize
-            data = {
-                "content": f"{ping}",
-                "username": "Big Rain Notifier"
-            }
-            data["embeds"] = [
-                {
-                    "description": f"- 🌧 New big rain started!\n- 👥 **Host**: {rain_['host']}\n- 💸 **Rain Amount**: {rain_['prize']}\n- ⌚ **Expiration**: <t:{duration}:R>\n- 🍂 **Hop on [BloxFlip](https://bloxflip.com) to participate in this chat rain!**\n{webhook_thing}\n- **Last time rain detected: {current_time_kiev} (UTC+3)**\n- **Version: {version} | made by {credits}**",
-                    "title": "Good News!",
-                    "thumbnail": {
-                        "url": scraper.get(
-                            f"https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds={usdid}&size=50x50&format=Png&isCircular=false").json()['data'][0][
-                            'imageUrl']
-                    }
+    scraper = cloudscraper.create_scraper()
+    try:
+        r = scraper.get('https://api.bloxflip.com/chat/history').json()
+        rain_ = active()
+        if rain_['active']:
+            getd = rain_['duration']
+            c = rain_['created']
+            addx = getd + c
+            dur = addx / 1000
+            duration = round(dur)
+            conv = (duration / (1000 * 60)) % 60
+            time_to_slp = (conv * 60 + 10)
+            usdid = scraper.post(f"https://users.roblox.com/v1/usernames/users",
+                                  json={"usernames": [rain_['host']]}).json()['data'][0]['id']
+            
+            # rain pings
+            prize = int(rain_['prize'])
+            if prize >= 501:
+                ping = ping_high_prize
+                data = {
+                    "content": f"{ping}",
+                    "username": "Big Rain Notifier"
                 }
-            ]
-        else:
-            ping = ping_low_prize
-            data = {
-                "content": f"{ping}",
-                "username": "Low Rain Notifier"
-            }
-            data["embeds"] = [
-                {
-                    "description": f"- 🌧 New low rain started!\n- 👥 **Host**: {rain_['host']}\n- 💸 **Rain Amount**: {rain_['prize']}\n- ⌚ **Expiration**: <t:{duration}:R>\n- 🍂 **Hop on [BloxFlip](https://bloxflip.com) to participate in this chat rain!**\n{webhook_thing}\n- **Last time rain detected: {current_time_kiev} (UTC+3)**\n- **Version: {version} | made by {credits}**",
-                    "title": "Good News!",
-                    "thumbnail": {
-                        "url": scraper.get(
-                            f"https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds={usdid}&size=50x50&format=Png&isCircular=false").json()['data'][0][
-                            'imageUrl']
+                data["embeds"] = [
+                    {
+                        "description": f"- 🌧 New big rain started!\n- 👥 **Host**: {rain_['host']}\n- 📜 **User ID**: {usdid}\n- 💸 **Rain Amount**: {rain_['prize']}\n- ⌚ **Expiration**: <t:{duration}:R>\n- 🍂 **Hop on [BloxFlip](https://bloxflip.com) to participate in this chat rain!**\n{webhook_thing}\n- **Last time rain detected: {current_time_kiev} (UTC+3)**\n- **Version: {version} | made by {credits}**",
+                        "title": "Good News!",
+                        "thumbnail": {
+                            "url": scraper.get(
+                                f"https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds={usdid}&size=50x50&format=Png&isCircular=false").json()['data'][0][
+                                'imageUrl']
+                        }
                     }
+                ]
+            else:
+                ping = ping_low_prize
+                data = {
+                    "content": f"{ping}",
+                    "username": "Low Rain Notifier"
                 }
-            ]
+                data["embeds"] = [
+                    {
+                        "description": f"- 🌧 New low rain started!\n- 👥 **Host**: {rain_['host']}\n- 📜 **User ID**: {usdid}\n- 💸 **Rain Amount**: {rain_['prize']}\n- ⌚ **Expiration**: <t:{duration}:R>\n- 🍂 **Hop on [BloxFlip](https://bloxflip.com) to participate in this chat rain!**\n{webhook_thing}\n- **Last time rain detected: {current_time_kiev} (UTC+3)**\n- **Version: {version} | made by {credits}**",
+                        "title": "Good News!",
+                        "thumbnail": {
+                            "url": scraper.get(
+                                f"https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds={usdid}&size=50x50&format=Png&isCircular=false").json()['data'][0][
+                                'imageUrl']
+                        }
+                    }
+                ]
 
-        r = scraper.post(webhook, json=data)
-        time.sleep(time_to_slp)
-    time.sleep(time_sleep_every_loop)
+            # log info abt rains idk xd
+            logging.info(f"Detected new rain\nHost: {rain_['host']}\nUser ID: {usdid}\nAmount: {rain_['prize']}\nPing: {ping}\nLast time rain detected: {current_time_kiev}\n────")
+            print("New rain detected.")
 
-# CONTACT kellyhate IN DISCORD FOR SUPPORT
+            r = scraper.post(webhook, json=data)
+            time.sleep(time_to_slp)
+        time.sleep(time_sleep_every_loop)
+    except Exception as e:
+        # log exceptions
+        logging.error(f"Error occurred: {str(e)}")
+        time.sleep(time_sleep_every_loop)
+
+# dm kellyhate in dc for contact
