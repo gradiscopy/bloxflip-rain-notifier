@@ -19,7 +19,7 @@ credits = "kellyhated,coxy.57"
 tiktok_user = "@kellysqw"
 discord_server = "discord.gg/SDZac8mSXd"
 discord_username = "kellyhate"
-version = "1.5"
+version = "V1.55"
 github = "https://github.com/kellyhated/bloxflip-rain-notifier"
 
 with open('config.json', 'r') as config_file:
@@ -82,7 +82,7 @@ while True:
             usdid = scraper.post(f"https://users.roblox.com/v1/usernames/users",
                                   json={"usernames": [rain_['host']]}).json()['data'][0]['id']
             
-            # rain pings
+            # rain pings / rain amount
             prize = int(rain_['prize'])
             if prize >= 501:
                 ping = ping_high_prize
@@ -92,12 +92,17 @@ while True:
                 }
                 data["embeds"] = [
                     {
-                        "description": f"- 🌧 New big rain started!\n- 👥 **Host**: {rain_['host']}\n- 📜 **User ID**: {usdid}\n- 💸 **Rain Amount**: {rain_['prize']}\n- ⌚ **Expiration**: <t:{duration}:R>\n- 🍂 **Hop on [BloxFlip](https://bloxflip.com) to participate in this chat rain!**\n{webhook_thing}\n- **Last time rain detected: {current_time_kiev} (UTC+3)**\n- **Version: {version} | made by {credits}**",
-                        "title": "Good News!",
+                        "description": f"- 🌧 New big rain started!\n- 👥 **Host**: {rain_['host']}\n- 📜 **User ID**: {usdid}\n- 💸 **Rain Amount**: {rain_['prize']} R$\n- ⌚ **Expiration**: <t:{duration}:R>\n- 🍂 **Hop on [BloxFlip](https://bloxflip.com) to participate in this chat rain!**",
+                        "title": "Good news!",
+                        "color": 0xFFFF00,
                         "thumbnail": {
                             "url": scraper.get(
                                 f"https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds={usdid}&size=50x50&format=Png&isCircular=false").json()['data'][0][
                                 'imageUrl']
+                        },
+                        "footer": {
+                            "text": f"{version} | {current_time_kiev}",
+                            "icon_url": "https://cdn.discordapp.com/avatars/1206213607881445397/7205c6a9b70fbb9dd696d98603189b1e.webp?size=80"
                         }
                     }
                 ]
@@ -109,19 +114,24 @@ while True:
                 }
                 data["embeds"] = [
                     {
-                        "description": f"- 🌧 New low rain started!\n- 👥 **Host**: {rain_['host']}\n- 📜 **User ID**: {usdid}\n- 💸 **Rain Amount**: {rain_['prize']}\n- ⌚ **Expiration**: <t:{duration}:R>\n- 🍂 **Hop on [BloxFlip](https://bloxflip.com) to participate in this chat rain!**\n{webhook_thing}\n- **Last time rain detected: {current_time_kiev} (UTC+3)**\n- **Version: {version} | made by {credits}**",
-                        "title": "Good News!",
+                        "description": f"- 🌧 New low rain started!\n- 👥 **Host**: {rain_['host']}\n- 📜 **User ID**: {usdid}\n- 💸 **Rain Amount**: {rain_['prize']} R$\n- ⌚ **Expiration**: <t:{duration}:R>\n- 🍂 **Hop on [BloxFlip](https://bloxflip.com) to participate in this chat rain!**",
+                        "title": "Good news!",
+                        "color": 0x00008B,
                         "thumbnail": {
                             "url": scraper.get(
                                 f"https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds={usdid}&size=50x50&format=Png&isCircular=false").json()['data'][0][
                                 'imageUrl']
+                        },
+                        "footer": {
+                            "text": f"{version} | {current_time_kiev}",
+                            "icon_url": "https://cdn.discordapp.com/avatars/1206213607881445397/7205c6a9b70fbb9dd696d98603189b1e.webp?size=80"
                         }
                     }
                 ]
 
             # log info abt rains idk xd
             logging.info(f"Detected new rain\nHost: {rain_['host']}\nUser ID: {usdid}\nAmount: {rain_['prize']}\nPing: {ping}\nLast time rain detected: {current_time_kiev}\n────")
-            print("New rain detected.")
+            print(f"Detected new rain\nHost: {rain_['host']}\nUser ID: {usdid}\nAmount: {rain_['prize']}\nPing: {ping}\nLast time rain detected: {current_time_kiev}")
 
             r = scraper.post(webhook, json=data)
             time.sleep(time_to_slp)
