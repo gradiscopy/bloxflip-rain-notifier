@@ -102,7 +102,7 @@ while True:
                         },
                         "footer": {
                             "text": f"{version} | {current_time_kiev}",
-                            "icon_url": "https://cdn.discordapp.com/avatars/1206213607881445397/7205c6a9b70fbb9dd696d98603189b1e.webp?size=80"
+                            "icon_url": "https://cdn.discordapp.com/attachments/1205271266299478026/1213787087351062538/735dbf3218382bb1b772963a5466aa23.webp?ex=65f6be50&is=65e44950&hm=74f3f6cfe1809864eaa55a55591d09087b11039eb4c05451b5e83e39f412289b&"
                         }
                     }
                 ]
@@ -124,7 +124,7 @@ while True:
                         },
                         "footer": {
                             "text": f"{version} | {current_time_kiev}",
-                            "icon_url": "https://cdn.discordapp.com/avatars/1206213607881445397/7205c6a9b70fbb9dd696d98603189b1e.webp?size=80"
+                            "icon_url": "https://cdn.discordapp.com/attachments/1205271266299478026/1213787087351062538/735dbf3218382bb1b772963a5466aa23.webp?ex=65f6be50&is=65e44950&hm=74f3f6cfe1809864eaa55a55591d09087b11039eb4c05451b5e83e39f412289b&"
                         }
                     }
                 ]
