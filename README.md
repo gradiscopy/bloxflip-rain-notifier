@@ -1,42 +1,58 @@
 # WARNING
 That code was made by coxy.57 i took it and added things, fixed the bug with bot not sending webhook, added better designs, more messages in webhook, pings for big rains and low rains, visuals in code, and other things
 
-# tutorial
-1. Download files
-2. Download python (3.6 or late)
-3. Open config.json and setup it put webhooks,roles etc.
-4. Open restarter config, u can enable/disable webhook,message
-5. Open cmd and type pip install -r requirements.txt
-6. Open keep-alive.py now your bot is working!
+# BloxFlip Rain Notifier
 
-# how to set up the config.json?
-1. Open config.json
-2. Find "webhook" = ""
-3. Put your webhook in ""
-4. Find roles, high and low then put in <@&> role id, like that: **<@&ROLE_ID>**
+## Overview
 
-# how to set up the restarter config?
-1. Open restarter config
-2. Find "webhook": ""
-3. Put in "" your webhook (u can disable webhook)
-4. Best setting for minutes: 4
-5. And set up webhook message u want (u can disable message)
+BloxFlip Rain Notifier is a Python script designed to notify users about rain events on the BloxFlip platform. It can be configured to send different notifications based on the rain amount.
 
-# how to download python? 
-1. U need to download it on **https://www.python.org/**
-2. Download any version u want (recommended 3.12)
-3. Enable path in download, then download that (recommended on disk C)
+## Features
 
-# what if im getting errors / cant launch python
-1. Dm kellyhate on discord / join discord server for support **https://discord.gg/UsCvFYFeM9**
+- **Pings:** Notifies users with different pings based on the rain amount.
+- **Webhook Integration:** Sends notifications to a specified Discord webhook.
+- **Logging:** Records rain events and errors in a log file.
 
-# where i can host my bot 24/7?
-https://bot-hosting.net/?aff=1170162576735354932
+   ## Requirements
 
-# how bot works?
-It sending webhook to your server when the rain is started
+- Python 3.x
+- Required Python packages (install via `pip install -r requirements.txt`):
+  - `http.client`
+  - `json`
+  - `requests`
+  - `time`
+  - `datetime`
+  - `timezone`
+  - `timedelta`
+  - `colorama`
+  - `cloudscraper`
+  - `logging`
 
-# UPDATES EVERY 2 STARS, ENJOY!
+## Tutorial
 
+### Step 1: Install Python
 
+1. Download and install Python 3.x from the official website: [Python Downloads](https://www.python.org/downloads/)
+2. During installation, make sure to check the box that says "Add Python to PATH."
 
+### Step 2: Set up the config
+
+The `config.json` file is used to customize the behavior of the BloxFlip Rain Notifier. Here's a step-by-step guide on how to use and configure the settings:
+
+**Ping Settings:**
+
+   - `ping_low_prize`: Set the default ping for rain amounts below 1000 R$.
+   - `ping_high_prize`: Set the default ping for rain amounts 1000 R$ and above.
+   - `webhook`: Provide the Discord webhook URL where you want to receive notifications. Setting up Discord Webhook:
+
+   ```json
+   ```"ping_low_prize": "your_default_ping_below_1k",```
+   "ping_high_prize": "your_default_ping_1k_and_above",
+   "webhook": "https://discord.com/api/webhooks/YOUR_WEBHOOK_ID/YOUR_WEBHOOK_TOKEN",
+
+### Setting up Discord Webhook:
+    In your Discord server, navigate to the channel where you want to receive notifications.
+    Click on the gear icon next to the channel name and select "Edit Channel."
+    Go to the "Integrations" tab and click "Create Webhook."
+    Customize the name and avatar of your webhook and click "Copy Webhook URL."
+    Replace the webhook value in your config.json file with the copied URL.
