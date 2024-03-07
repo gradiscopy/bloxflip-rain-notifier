@@ -45,14 +45,14 @@ The `config.json` file is used to customize the behavior of the BloxFlip Rain No
    - `ping_high_prize`: Set the default ping for rain amounts 1000 R$ and above.
    - `webhook`: Provide the Discord webhook URL where you want to receive notifications. Setting up Discord Webhook:
 
-   ```json
-   ```"ping_low_prize": "your_default_ping_below_1k",```
-   "ping_high_prize": "your_default_ping_1k_and_above",
-   "webhook": "https://discord.com/api/webhooks/YOUR_WEBHOOK_ID/YOUR_WEBHOOK_TOKEN",
-
 ### Setting up Discord Webhook:
     In your Discord server, navigate to the channel where you want to receive notifications.
     Click on the gear icon next to the channel name and select "Edit Channel."
     Go to the "Integrations" tab and click "Create Webhook."
     Customize the name and avatar of your webhook and click "Copy Webhook URL."
     Replace the webhook value in your config.json file with the copied URL.
+
+   ```json
+   ```"ping_low_prize": "your_default_ping_below_1k",```
+   "ping_high_prize": "your_default_ping_1k_and_above",
+   "webhook": "https://discord.com/api/webhooks/YOUR_WEBHOOK_ID/YOUR_WEBHOOK_TOKEN",
